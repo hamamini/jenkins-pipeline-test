@@ -18,5 +18,10 @@ pipeline {
 				echo 'Code Deployed.'
 			}
 		}
+		stage('var_test'){
+			steps {
+				build job: 'var_test'
+			}
+		}
 	}
 }
