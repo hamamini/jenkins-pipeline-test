@@ -29,6 +29,7 @@ pipeline {
 				failure {
 					echo 'Failure'
 				}
+			}	
 		}
 		stage('usr_test'){
 			steps {
