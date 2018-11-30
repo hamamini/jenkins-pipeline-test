@@ -22,6 +22,13 @@ pipeline {
 			steps {
 				build job: 'var_test'
 			}
+			post {
+				success {
+					echo 'Success'
+				}
+				failure {
+					echo 'Failure'
+				}
 		}
 		stage('usr_test'){
 			steps {
