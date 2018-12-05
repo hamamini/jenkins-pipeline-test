@@ -66,13 +66,13 @@ pipeline {
 stages {
 	stage('Build'){
 		steps {
-			sh 'echo `date` > /Users/hamed/jenkins/index.html'
+			sh 'echo `date` > /var/jenkins_home/index.html'
 		}
 
 		post {
 			success {
 				echo 'This is TEST...'
-				sh 'echo `date +"%Y%m%d%H%M"` > /Users/hamed/jenkins/index.htm'
+				sh 'echo `date +"%Y%m%d%H%M"` > /var/jenkins_home/index.htm'
 			}
 		}
 	}
@@ -81,13 +81,13 @@ stages {
 		parallel{
 			stage('Deploy to Staging'){
 				steps {
-					sh 'scp /Users/hamed/jenkins/index.html root@$(params.nginx-stg):/var/www/html/'
+					sh 'scp /var/jenkins_home/index.html root@$(params.nginx-stg):/var/www/html/'
 				}
 			}
 
 			stage('Deploy to Live'){
 				steps {
-					sh 'scp /Users/hamed/jenkins/index.htm root@$(params.nginx-prd):/var/www/html/'
+					sh 'scp /var/jenkins_home/index.htm root@$(params.nginx-prd):/var/www/html/'
 				}
 			}
 		}
