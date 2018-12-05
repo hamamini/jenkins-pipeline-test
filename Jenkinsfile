@@ -72,7 +72,7 @@ stages {
 		post {
 			success {
 				echo 'This is TEST...'
-				sh 'echo `date +"%Y%m%d%H%M"` > /var/jenkins_home/index.htm'
+				sh 'echo `date+"%Y%m%d%H%M"` > /var/jenkins_home/index.htm'
 			}
 		}
 	}
