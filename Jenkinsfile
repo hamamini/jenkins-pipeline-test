@@ -72,7 +72,7 @@ stages {
 		post {
 			success {
 				echo 'This is TEST...'
-				sh 'echo `date+"%Y%m%d%H%M"` > /var/jenkins_home/index.htm'
+				sh 'echo `date +"%Y%m%d%H%M"` > /var/jenkins_home/index.htm'
 			}
 		}
 	}
@@ -81,13 +81,13 @@ stages {
 		parallel{
 			stage('Deploy to Staging'){
 				steps {
-					sh 'scp /var/jenkins_home/index.html root@${params.nginx-stg}:/var/www/html/'
+					sh "scp -i /var/jenkins_home/index.html root@${params.nginx-stg}:/var/www/html/"
 				}
 			}
 
 			stage('Deploy to Live'){
 				steps {
-					sh 'scp /var/jenkins_home/index.htm root@${params.nginx-prd}:/var/www/html/'
+					sh "scp -i /var/jenkins_home/index.htm root@${params.nginx-prd}:/var/www/html/"
 				}
 			}
 		}
