@@ -81,7 +81,7 @@ stages {
 		parallel{
 			stage('Deploy to Staging'){
 				steps {
-					sh "scp -i /var/jenkins_home/index.html root@${params.nginx-stg}:/var/www/html/"
+					sh "scp -i /var/jenkins_home/index.html root@192.168.20.202:/var/www/html/"
 				}
 			}
 
