@@ -55,8 +55,8 @@ pipeline {
 	agent any 
 		
 	parameters {
-		string(name: 'nginx-stg', defaultValue: '192.168.20.202', description: 'Staging')
-		string(name: 'nginx-prd', defaultValue: '192.168.20.203', description: 'Live')
+		string(name: 'nginx_stg', defaultValue: '192.168.20.202', description: 'Staging')
+		string(name: 'nginx_prd', defaultValue: '192.168.20.203', description: 'Live')
 	}
 
 	/*triggers {
@@ -81,14 +81,14 @@ stages {
 		parallel{
 			stage('Deploy to Staging'){
 				steps {
-					echo "${params.nginx-stg}"
-					sh "scp /var/jenkins_home/index.html root@${params.nginx-stg}:/var/www/html/"
+					echo "${params.nginx_stg}"
+					/*sh "scp /var/jenkins_home/index.html root@${params.nginx_stg}:/var/www/html/"
 				}
 			}
 
 			stage('Deploy to Live'){
 				steps {
-					sh "scp /var/jenkins_home/index.htm root@${params.nginx-prd}:/var/www/html/"
+					sh "scp /var/jenkins_home/index.htm root@${params.nginx-prd}:/var/www/html/"*/
 				}
 			}
 		}
