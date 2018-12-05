@@ -82,13 +82,13 @@ stages {
 			stage('Deploy to Staging'){
 				steps {
 					echo "${params.nginx_stg}"
-					/*sh "scp /var/jenkins_home/index.html root@${params.nginx_stg}:/var/www/html/"
+					sh "scp /var/jenkins_home/index.html root@${params.nginx_stg}:/var/www/html/"
 				}
 			}
 
 			stage('Deploy to Live'){
 				steps {
-					sh "scp /var/jenkins_home/index.htm root@${params.nginx-prd}:/var/www/html/"*/
+					sh "scp /var/jenkins_home/index.htm root@${params.nginx_prd}:/var/www/html/"
 				}
 			}
 		}
