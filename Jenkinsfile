@@ -59,9 +59,9 @@ pipeline {
 		string(name: 'nginx_prd', defaultValue: '192.168.20.203', description: 'Live')
 	}
 
-	/*triggers {
+	triggers {
 		pollSCM('* * * * *')
-	}*/
+	}
 
 stages {
 	stage('Build'){
