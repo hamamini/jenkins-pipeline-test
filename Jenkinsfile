@@ -1,4 +1,4 @@
-pipeline {
+/*pipeline {
 	agent any
 	stages {
 		stage('Init'){
@@ -48,4 +48,49 @@ pipeline {
 			}
 		}
 	}
+}
+*/
+
+pipeline {
+	agent any 
+		
+	parameters {
+		string(name: 'nginx-stg', defaultValue: '192.168.20.202', description: 'Staging')
+		string(name: 'nginx-prd', defaultValue: '192.168.20.203', description: 'Live')
+	}
+
+	/*triggers {
+		pollSCM('* * * * *')
+	}*/
+
+Stages {
+	stage('Build'){
+		steps {
+			sh 'echo `date` > /Users/hamed/jenkins/index.html'
+		}
+
+		post {
+			success {
+				echo 'This is TEST...'
+				sh 'echo `date +"%Y%m%d%H%M"` > /Users/hamed/jenkins/index.htm'
+			}
+		}
+	}
+
+	stage('Deployments'){
+		parallel{
+			stage('Deploy to Staging'){
+				steps {
+					sh 'scp /Users/hamed/jenkins/index.html root@$(params.nginx-stg):/var/www/html/'
+				}
+			}
+
+			stage('Deploy to Live'){
+				steps {
+					sh 'scp /Users/hamed/jenkins/index.htm root@$(params.nginx-prd):/var/www/html/'
+				}
+			}
+		}
+	}
+}
 }
