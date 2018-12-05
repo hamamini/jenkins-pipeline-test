@@ -63,7 +63,7 @@ pipeline {
 		pollSCM('* * * * *')
 	}*/
 
-Stages {
+stages {
 	stage('Build'){
 		steps {
 			sh 'echo `date` > /Users/hamed/jenkins/index.html'
@@ -92,4 +92,5 @@ Stages {
 			}
 		}
 	}
+}
 }
